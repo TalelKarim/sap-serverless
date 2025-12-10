@@ -7,6 +7,65 @@
 # Table DynamoDB : vehicles-dev
 ########################
 
+
+
+#####################################
+# Seed de la table vehicles-dev
+#####################################
+
+# On définit nos véhicules de test dans un local
+locals {
+  vehicles_seed = {
+    "veh-001" = {
+      id    = "veh-001"
+      brand = "Tesla"
+      model = "Model 3"
+      year  = 2024
+      color = "black"
+    }
+    "veh-002" = {
+      id    = "veh-002"
+      brand = "BMW"
+      model = "X1"
+      year  = 2021
+      color = "white"
+    }
+    "veh-003" = {
+      id    = "veh-003"
+      brand = "Audi"
+      model = "A3"
+      year  = 2022
+      color = "blue"
+    }
+    "veh-004" = {
+      id    = "veh-004"
+      brand = "Renault"
+      model = "Clio"
+      year  = 2020
+      color = "red"
+    }
+  }
+}
+
+# On crée 1 item DynamoDB par entrée dans local.vehicles_seed
+resource "aws_dynamodb_table_item" "seed_vehicles" {
+  for_each   = local.vehicles_seed
+
+  table_name = module.vehicles_table.table_name
+  hash_key   = "id"  # ta partition key
+
+  # Format attendu = JSON DynamoDB (S pour string, N pour number, etc.)
+  item = jsonencode({
+    id    = { S = each.value.id }
+    brand = { S = each.value.brand }
+    model = { S = each.value.model }
+    year  = { N = tostring(each.value.year) }
+    color = { S = each.value.color }
+  })
+}
+
+
+
 module "vehicles_table" {
   source = "../../modules/dynamodb-table"
 
