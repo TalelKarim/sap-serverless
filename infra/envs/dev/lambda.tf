@@ -32,8 +32,8 @@ resource "aws_iam_role_policy" "lambda_find_all_vehicles_dynamodb" {
     Version = "2012-10-17",
     Statement = [
       {
-        Effect   = "Allow",
-        Action   = [
+        Effect = "Allow",
+        Action = [
           "dynamodb:Scan",
           "dynamodb:DescribeTable"
         ],
@@ -77,8 +77,8 @@ resource "aws_iam_role_policy" "lambda_find_vehicle_dynamodb" {
     Version = "2012-10-17",
     Statement = [
       {
-        Effect   = "Allow",
-        Action   = [
+        Effect = "Allow",
+        Action = [
           "dynamodb:GetItem",
           "dynamodb:DescribeTable"
         ],

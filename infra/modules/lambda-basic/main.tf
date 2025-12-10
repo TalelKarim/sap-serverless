@@ -61,8 +61,8 @@ resource "aws_lambda_function" "this" {
   filename         = data.archive_file.package.output_path
   source_code_hash = data.archive_file.package.output_base64sha256
 
-  timeout      = var.timeout
-  memory_size  = var.memory_size
+  timeout       = var.timeout
+  memory_size   = var.memory_size
   architectures = var.architectures
 
   environment {

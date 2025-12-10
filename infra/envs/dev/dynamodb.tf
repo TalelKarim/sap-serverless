@@ -49,10 +49,10 @@ locals {
 
 # On crée 1 item DynamoDB par entrée dans local.vehicles_seed
 resource "aws_dynamodb_table_item" "seed_vehicles" {
-  for_each   = local.vehicles_seed
+  for_each = local.vehicles_seed
 
   table_name = module.vehicles_table.table_name
-  hash_key   = "id"  # ta partition key
+  hash_key   = "id" # ta partition key
 
   # Format attendu = JSON DynamoDB (S pour string, N pour number, etc.)
   item = jsonencode({
@@ -86,17 +86,17 @@ module "vehicles_table" {
   # table_class = "STANDARD"
 
   # Sécurité & résilience (par défaut dans le module mais je les redonne pour que ce soit explicite)
-  deletion_protection_enabled     = true
-  point_in_time_recovery_enabled  = true      # PITR activé : rollback possible jusqu’à 35 jours
-  server_side_encryption_enabled  = true      # chiffrement au repos
+  deletion_protection_enabled    = true
+  point_in_time_recovery_enabled = true # PITR activé : rollback possible jusqu’à 35 jours
+  server_side_encryption_enabled = true # chiffrement au repos
   # kms_key_arn                   = null      # clé KMS gérée par AWS (alias/aws/dynamodb)
 
   # TTL désactivé pour l’instant
-  ttl_enabled         = false
-  ttl_attribute_name  = null
+  ttl_enabled        = false
+  ttl_attribute_name = null
 
   # Streams désactivés pour l’instant (on les activera si on branche des Lambdas dessus)
-  stream_enabled   = false
+  stream_enabled = false
   # stream_view_type = "NEW_AND_OLD_IMAGES"   # utile seulement si stream_enabled = true
 
   # Tags propagés depuis les locals
