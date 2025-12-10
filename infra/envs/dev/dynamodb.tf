@@ -86,7 +86,7 @@ module "vehicles_table" {
   # table_class = "STANDARD"
 
   # Sécurité & résilience (par défaut dans le module mais je les redonne pour que ce soit explicite)
-  deletion_protection_enabled    = true
+  deletion_protection_enabled    = false
   point_in_time_recovery_enabled = true # PITR activé : rollback possible jusqu’à 35 jours
   server_side_encryption_enabled = true # chiffrement au repos
   # kms_key_arn                   = null      # clé KMS gérée par AWS (alias/aws/dynamodb)
