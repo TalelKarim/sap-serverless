@@ -12,3 +12,14 @@ output "vehicles_api_url" {
   description = "Base URL of the vehicles HTTP API."
   value       = module.api_gw_http_vehicles.api_endpoint
 }
+
+
+output "frontend_bucket_name" {
+  description = "Bucket S3 pour le frontend."
+  value       = module.frontend_website.bucket_name
+}
+
+output "frontend_website_endpoint" {
+  description = "Endpoint HTTP du site statique S3."
+  value       = module.frontend_website.website_endpoint
+}
