@@ -1,0 +1,348 @@
+:root {
+  --bg: #050816;
+  --bg-elevated: #0f172a;
+  --bg-elevated-soft: #020617;
+  --accent: #38bdf8;
+  --accent-soft: rgba(56, 189, 248, 0.12);
+  --accent-strong: #0ea5e9;
+  --text: #e5e7eb;
+  --text-soft: #9ca3af;
+  --border-subtle: rgba(148, 163, 184, 0.28);
+  --radius-xl: 18px;
+  --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.8);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+    "Segoe UI", sans-serif;
+  background: radial-gradient(circle at top, #1f2937 0, #020617 45%, #000 100%);
+  color: var(--text);
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header */
+
+.app-header {
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(31, 41, 55, 0.8);
+  backdrop-filter: blur(14px);
+  background: radial-gradient(circle at top left, #111827 0, rgba(15, 23, 42, 0.9) 40%, rgba(15, 23, 42, 0.95) 100%);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.app-header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-circle {
+  width: 38px;
+  height: 38px;
+  border-radius: 999px;
+  background: radial-gradient(circle, #38bdf8, #0f172a);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: #0b1120;
+  box-shadow: 0 0 28px rgba(56, 189, 248, 0.7);
+}
+
+.app-header h1 {
+  margin: 0;
+  font-size: 20px;
+  letter-spacing: 0.02em;
+}
+
+.subtitle {
+  margin: 0;
+  font-size: 12px;
+  color: var(--text-soft);
+}
+
+.app-header-right {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.badge {
+  border-radius: 999px;
+  padding: 4px 10px;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.badge.env {
+  background: linear-gradient(to right, #22c55e, #16a34a);
+  color: #022c22;
+  font-weight: 600;
+}
+
+.badge.status {
+  background: rgba(15, 23, 42, 0.9);
+  border: 1px solid rgba(148, 163, 184, 0.5);
+  color: var(--text-soft);
+}
+
+/* Layout main */
+
+.app-main {
+  flex: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 2.1fr) minmax(0, 1.6fr);
+  gap: 18px;
+  padding: 18px 20px 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.panel {
+  background: radial-gradient(circle at top, rgba(15, 23, 42, 0.95), #020617);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-soft);
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.panel-header {
+  padding: 14px 16px 10px;
+  border-bottom: 1px solid rgba(31, 41, 55, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.panel-header h2 {
+  margin: 0;
+  font-size: 15px;
+}
+
+.panel-helper {
+  font-size: 12px;
+  color: var(--text-soft);
+}
+
+.panel-state {
+  padding: 10px 16px 0;
+  font-size: 13px;
+  color: var(--text-soft);
+}
+
+.panel-list {
+  overflow: hidden;
+}
+
+.panel-detail {
+  overflow: hidden;
+}
+
+/* Buttons */
+
+.btn {
+  border-radius: 999px;
+  border: none;
+  padding: 7px 12px;
+  font-size: 12px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 500;
+}
+
+.btn.primary {
+  background: linear-gradient(to right, #38bdf8, #0ea5e9);
+  color: #0b1120;
+  box-shadow: 0 10px 24px rgba(56, 189, 248, 0.4);
+}
+
+.btn.primary:hover {
+  filter: brightness(1.05);
+  transform: translateY(-0.5px);
+}
+
+/* Vehicles grid */
+
+.vehicles-grid {
+  padding: 10px 14px 14px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  overflow-y: auto;
+  max-height: calc(100vh - 170px);
+}
+
+.vehicle-card {
+  background: radial-gradient(circle at top left, rgba(56, 189, 248, 0.11), rgba(15, 23, 42, 0.9));
+  border-radius: 14px;
+  border: 1px solid rgba(51, 65, 85, 0.8);
+  padding: 10px 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: transform 0.12s ease-out, box-shadow 0.12s ease-out, border-color 0.12s ease-out, background 0.12s ease-out;
+}
+
+.vehicle-card:hover {
+  transform: translateY(-1px);
+  border-color: var(--accent-strong);
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.9);
+}
+
+.vehicle-card.selected {
+  border-color: var(--accent-strong);
+  box-shadow: 0 0 0 1px rgba(56, 189, 248, 0.7),
+    0 16px 40px rgba(15, 23, 42, 0.95);
+  background: radial-gradient(circle at top left, rgba(56, 189, 248, 0.18), rgba(15, 23, 42, 0.94));
+}
+
+.vehicle-avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 12px;
+  background: radial-gradient(circle, #1f2937, #020617);
+  border: 1px solid rgba(148, 163, 184, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.vehicle-main {
+  flex: 1;
+}
+
+.vehicle-title {
+  margin: 0;
+  font-size: 14px;
+}
+
+.vehicle-sub {
+  margin: 2px 0 0;
+  font-size: 12px;
+  color: var(--text-soft);
+}
+
+.vehicle-label {
+  font-size: 11px;
+  padding: 3px 8px;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.6);
+  color: var(--text-soft);
+}
+
+/* Detail panel */
+
+.detail-content {
+  padding: 10px 16px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  overflow: auto;
+  max-height: calc(100vh - 150px);
+}
+
+.detail-main h3 {
+  margin: 0;
+  font-size: 16px;
+}
+
+.detail-subtitle {
+  margin: 4px 0 10px;
+  font-size: 13px;
+  color: var(--text-soft);
+}
+
+.detail-meta {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px 16px;
+  font-size: 13px;
+}
+
+.detail-meta dt {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-soft);
+  margin-bottom: 2px;
+}
+
+.detail-meta dd {
+  margin: 0;
+  font-weight: 500;
+}
+
+.detail-raw {
+  border-radius: 12px;
+  background: rgba(15, 23, 42, 0.9);
+  border: 1px solid rgba(30, 64, 175, 0.6);
+  padding: 8px 10px;
+}
+
+.detail-raw h4 {
+  margin: 0 0 6px;
+  font-size: 12px;
+  color: var(--text-soft);
+}
+
+.detail-raw pre {
+  margin: 0;
+  font-size: 11px;
+  max-height: 160px;
+  overflow: auto;
+}
+
+/* Footer */
+
+.app-footer {
+  padding: 8px 20px 12px;
+  font-size: 11px;
+  color: var(--text-soft);
+  text-align: center;
+  border-top: 1px solid rgba(15, 23, 42, 0.8);
+  background: radial-gradient(circle at bottom, #020617, #000);
+}
+
+/* Utils */
+
+.hidden {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .app-main {
+    grid-template-columns: 1fr;
+  }
+
+  .panel-detail {
+    order: -1;
+  }
+}

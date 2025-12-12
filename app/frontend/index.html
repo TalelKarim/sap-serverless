@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vehicles – Talel Serverless Lab</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="app-header">
+      <div class="app-header-left">
+        <div class="logo-circle">TV</div>
+        <div>
+          <h1>Talel Vehicles</h1>
+          <p class="subtitle">Demo serverless – API Gateway · Lambda · DynamoDB</p>
+        </div>
+      </div>
+      <div class="app-header-right">
+        <span class="badge env">dev</span>
+        <span class="badge status" id="apiStatus">API: checking…</span>
+      </div>
+    </header>
+
+    <main class="app-main">
+      <section class="panel panel-list">
+        <div class="panel-header">
+          <h2>Liste des véhicules</h2>
+          <button id="refreshBtn" class="btn primary">↻ Rafraîchir</button>
+        </div>
+
+        <div id="listState" class="panel-state"></div>
+        <div id="vehiclesGrid" class="vehicles-grid"></div>
+      </section>
+
+      <section class="panel panel-detail">
+        <div class="panel-header">
+          <h2>Détail du véhicule</h2>
+          <span id="detailPlaceholder" class="panel-helper">
+            Sélectionne un véhicule dans la liste…
+          </span>
+        </div>
+
+        <div id="detailContent" class="detail-content hidden">
+          <div class="detail-main">
+            <h3 id="detailTitle"></h3>
+            <p id="detailSubtitle" class="detail-subtitle"></p>
+
+            <dl class="detail-meta">
+              <div>
+                <dt>ID</dt>
+                <dd id="detailId"></dd>
+              </div>
+              <div>
+                <dt>Marque</dt>
+                <dd id="detailBrand"></dd>
+              </div>
+              <div>
+                <dt>Modèle</dt>
+                <dd id="detailModel"></dd>
+              </div>
+              <div>
+                <dt>Année</dt>
+                <dd id="detailYear"></dd>
+              </div>
+              <div>
+                <dt>Couleur</dt>
+                <dd id="detailColor"></dd>
+              </div>
+            </dl>
+          </div>
+
+          <div class="detail-raw">
+            <h4>Payload brut</h4>
+            <pre id="detailRawJson"></pre>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="app-footer">
+      <span>Talel Serverless Lab · front statique S3 + CloudFront</span>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>
