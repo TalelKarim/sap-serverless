@@ -90,3 +90,61 @@ resource "aws_route53_record" "api_domain_alias" {
     evaluate_target_health = false
   }
 }
+
+
+
+########################################
+# Certificat ACM us-east-1 pour app.talelkarimchebbi.com
+########################################
+
+resource "aws_acm_certificate" "app_cloudfront" {
+  provider          = aws.us_east_1
+  domain_name       = "app.talelkarimchebbi.com"
+  validation_method = "DNS"
+
+  lifecycle {
+    create_before_destroy = true
+  }
+}
+
+resource "aws_route53_record" "app_cloudfront_cert_validation" {
+  # On crée les enregistrements de validation DNS pour le cert
+  for_each = {
+    for dvo in aws_acm_certificate.app_cloudfront.domain_validation_options :
+    dvo.domain_name => {
+      name   = dvo.resource_record_name
+      type   = dvo.resource_record_type
+      record = dvo.resource_record_value
+    }
+  }
+
+  zone_id = var.front_zone_id
+  name    = each.value.name
+  type    = each.value.type
+  ttl     = 300
+  records = [each.value.record]
+}
+
+resource "aws_acm_certificate_validation" "app_cloudfront" {
+  provider                = aws.us_east_1
+  certificate_arn         = aws_acm_certificate.app_cloudfront.arn
+  validation_record_fqdns = [for r in aws_route53_record.app_cloudfront_cert_validation : r.fqdn]
+}
+
+
+
+########################################
+# DNS : app.talelkarimchebbi.com -> CloudFront
+########################################
+
+resource "aws_route53_record" "app_cloudfront_alias" {
+  zone_id = var.front_zone_id
+  name    = "app.talelkarimchebbi.com"
+  type    = "A"
+
+  alias {
+    name                   = aws_cloudfront_distribution.app_frontend.domain_name
+    zone_id                = aws_cloudfront_distribution.app_frontend.hosted_zone_id
+    evaluate_target_health = false
+  }
+}

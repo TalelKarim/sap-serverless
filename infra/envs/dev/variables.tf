@@ -11,3 +11,8 @@ variable "AWS_ACCESS_KEY_ID" {
 variable "AWS_SECRET_ACCESS_KEY" {
 
 }
+
+
+variable "front_zone_id" {
+  default = "Z02853281D3SLU2XO4SWA"
+}

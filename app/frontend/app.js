@@ -1,5 +1,5 @@
 // 🔧 À adapter si ton URL change
-const API_BASE_URL = "https://api.talelkarimchebbi.com/dev";
+const API_BASE_URL = "https://fth94anp4l.execute-api.eu-west-1.amazonaws.com/dev";
 
 const vehiclesGrid = document.getElementById("vehiclesGrid");
 const listState = document.getElementById("listState");

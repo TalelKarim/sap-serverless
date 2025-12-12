@@ -23,3 +23,14 @@ output "frontend_website_endpoint" {
   description = "Endpoint HTTP du site statique S3."
   value       = module.frontend_website.website_endpoint
 }
+
+
+output "app_cloudfront_domain" {
+  description = "Domain CloudFront (technique)."
+  value       = aws_cloudfront_distribution.app_frontend.domain_name
+}
+
+output "app_frontend_url" {
+  description = "URL finale de l'app frontend."
+  value       = "https://app.talelkarimchebbi.com"
+}
