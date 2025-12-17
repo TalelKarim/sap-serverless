@@ -7,7 +7,7 @@ const API_BASE_URL = "https://e1uq9useqe.execute-api.eu-west-1.amazonaws.com/dev
 
 // Config Cognito (remplace avec tes vraies valeurs)
 const COGNITO_DOMAIN = "https://talel-dev-auth.auth.eu-west-1.amazoncognito.com"; // ex: https://<domain>.auth.eu-west-1.amazoncognito.com
-const COGNITO_CLIENT_ID = "<TON_APP_CLIENT_ID>"; // module.cognito_users.user_pool_client_id
+const COGNITO_CLIENT_ID = "3n539t91b28vicpdhqbcp44uth"; // module.cognito_users.user_pool_client_id
 const COGNITO_REDIRECT_URI = "https://app.talelkarimchebbi.com/"; // URL de ton front
 const COGNITO_LOGOUT_REDIRECT_URI = "https://app.talelkarimchebbi.com/"; // où renvoyer après logout
 const COGNITO_SCOPE = "openid email profile";
