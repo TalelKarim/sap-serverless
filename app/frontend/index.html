@@ -12,12 +12,20 @@
         <div class="logo-circle">TV</div>
         <div>
           <h1>Talel Vehicles</h1>
-          <p class="subtitle">Demo serverless – API Gateway · Lambda · DynamoDB</p>
+          <p class="subtitle">
+            Demo serverless – Cognito · API Gateway · Lambda · DynamoDB
+          </p>
         </div>
       </div>
       <div class="app-header-right">
         <span class="badge env">dev</span>
         <span class="badge status" id="apiStatus">API: checking…</span>
+
+        <div class="auth-chip">
+          <span id="userBadge" class="badge user hidden"></span>
+          <button id="loginBtn" class="btn ghost">Se connecter</button>
+          <button id="logoutBtn" class="btn ghost hidden">Se déconnecter</button>
+        </div>
       </div>
     </header>
 
@@ -78,7 +86,7 @@
     </main>
 
     <footer class="app-footer">
-      <span>Talel Serverless Lab · front statique S3 + CloudFront</span>
+      <span>Talel Serverless Lab · front statique S3 + CloudFront + Cognito</span>
     </footer>
 
     <script src="app.js"></script>
