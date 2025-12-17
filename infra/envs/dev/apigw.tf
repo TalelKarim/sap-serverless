@@ -22,3 +22,20 @@ module "api_gw_http_vehicles" {
 
   tags = local.tags
 }
+
+
+
+resource "aws_apigatewayv2_authorizer" "vehicles_jwt" {
+  api_id          = module.api_gw_http_vehicles.api_id
+  name            = "vehicles-jwt-authorizer"
+  authorizer_type = "JWT"
+
+  identity_sources = [
+    "$request.header.Authorization",
+  ]
+
+  jwt_configuration {
+    audience = [module.cognito_users.user_pool_client_id]
+    issuer   = module.cognito_users.issuer_url
+  }
+}
