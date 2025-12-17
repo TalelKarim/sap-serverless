@@ -46,3 +46,13 @@ variable "cors_allow_methods" {
   description = "CORS allowed methods."
   default     = ["GET", "OPTIONS"]
 }
+
+
+
+variable "authorization_type" {
+  default = null
+}
+
+variable "authorizer_id" {
+  default = null
+}

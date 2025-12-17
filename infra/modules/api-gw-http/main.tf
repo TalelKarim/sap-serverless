@@ -52,6 +52,9 @@ resource "aws_apigatewayv2_route" "this" {
   api_id    = aws_apigatewayv2_api.this.id
   route_key = each.value.route_key
   target    = "integrations/${aws_apigatewayv2_integration.this[each.key].id}"
+  authorization_type = var.authorization_type
+  authorizer_id      = var.authorizer_id
+
 }
 
 ################################

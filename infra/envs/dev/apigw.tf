@@ -20,6 +20,9 @@ module "api_gw_http_vehicles" {
     }
   }
 
+  authorization_type = "JWT"
+  authorizer_id      = aws_apigatewayv2_authorizer.vehicles_jwt.id
+  
   tags = local.tags
 }
 
