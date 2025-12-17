@@ -34,3 +34,16 @@ output "app_frontend_url" {
   description = "URL finale de l'app frontend."
   value       = "https://app.talelkarimchebbi.com"
 }
+
+
+output "cognito_user_pool_id" {
+  value = module.cognito_users.user_pool_id
+}
+
+output "cognito_client_id" {
+  value = module.cognito_users.user_pool_client_id
+}
+
+output "cognito_hosted_ui_url" {
+  value = module.cognito_users.hosted_ui_base_url
+}
