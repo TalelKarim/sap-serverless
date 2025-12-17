@@ -8,7 +8,7 @@ const API_BASE_URL = "https://e1uq9useqe.execute-api.eu-west-1.amazonaws.com/dev
 // Config Cognito (remplace avec tes vraies valeurs)
 const COGNITO_DOMAIN = "https://talel-dev-auth.auth.eu-west-1.amazoncognito.com"; // ex: https://<domain>.auth.eu-west-1.amazoncognito.com
 const COGNITO_CLIENT_ID = "3n539t91b28vicpdhqbcp44uth"; // module.cognito_users.user_pool_client_id
-const COGNITO_REDIRECT_URI = "https://app.talelkarimchebbi.com/"; // URL de ton front
+const COGNITO_REDIRECT_URI = "https://app.talelkarimchebbi.com/callback"; // URL de ton front
 const COGNITO_LOGOUT_REDIRECT_URI = "https://app.talelkarimchebbi.com/"; // où renvoyer après logout
 const COGNITO_SCOPE = "openid email profile";
 
@@ -171,8 +171,11 @@ async function startLogin() {
     code_challenge: codeChallenge,
   });
 
-  window.location.href = `${COGNITO_DOMAIN}/oauth2/authorize?${params.toString()}`;
+  const loginUrl = `${COGNITO_DOMAIN}/login?${params.toString()}`;
+  console.log("Login URL utilisé :", loginUrl);
+  window.location.href = loginUrl;
 }
+
 
 function startLogout() {
   clearTokens();
@@ -232,6 +235,18 @@ async function handleAuthCallbackIfNeeded() {
 
     const tokens = await res.json();
     storeTokens(tokens);
+
+    const url = new URL(window.location.href);
+    url.searchParams.delete("code");
+    url.searchParams.delete("state");
+
+    if (url.pathname === "/callback") {
+      // on renvoie vers la racine de l'app une fois les tokens stockés
+      window.location.replace("/");
+    } else {
+      // cas général (si un jour tu utilises une autre route)
+      window.history.replaceState({}, "", url.pathname);
+    }
 
     // Nettoie l’URL (enlève ?code=...)
     url.searchParams.delete("code");
